@@ -1,25 +1,44 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { useEffect, useState } from "react";
+import { ApolloClient, InMemoryCache, gql } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "https://rickandmortyapi.com/graphql",
+  cache: new InMemoryCache(),
+});
 
 function App() {
+  const [data, setData] = useState([]);
+  const [loading, setLoading] = useState(false);
+  useEffect(() => {
+    setLoading(true);
+    async function fetchData() {
+      const { data, loading } = await client.query({
+        query: gql`
+          query {
+            characters(page: 2, filter: { name: "rick" }) {
+              info {
+                count
+              }
+              results {
+                name
+              }
+            }
+            location(id: 1) {
+              id
+            }
+            episodesByIds(ids: [1, 2]) {
+              id
+            }
+          }
+        `,
+      });
+      setData(data);
+      setLoading(loading);
+    }
+    fetchData();
+  }, []);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>{loading ? "Loading..." : <pre>{JSON.stringify(data, null, 4)}</pre>}</>
   );
 }
 
