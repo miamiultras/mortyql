@@ -6,6 +6,7 @@ import {
   useQuery,
 } from "@apollo/client";
 import styles from "./App.module.scss";
+import { Navbar } from "./components";
 
 const client = new ApolloClient({
   uri: "https://rickandmortyapi.com/graphql",
@@ -43,7 +44,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <div className={styles.container}>
-        <h2>MortyQL 🚀</h2>
+        <Navbar />
         <Ricks />
       </div>
     </ApolloProvider>
