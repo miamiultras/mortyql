@@ -3,6 +3,5 @@ import App from "./App";
 
 test("renders title", () => {
   render(<App />);
-  const linkElement = screen.getByText("MortyQL 🚀");
-  expect(linkElement).toBeInTheDocument();
+  expect(screen.getByText("mortyQL 🧪")).toBeInTheDocument();
 });
