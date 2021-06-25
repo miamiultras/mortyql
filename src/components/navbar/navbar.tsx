@@ -1,16 +1,26 @@
 import { useState } from "react";
 import classNames from "classnames";
+import { Link, useLocation } from "react-router-dom";
+
 import { ReactComponent as Hamburger } from "./hamburger.svg";
 import styles from "./navbar.module.scss";
 
-const MOCK_MENU_ITEMS = [
-  { id: 1, name: "Characters", active: true },
-  { id: 2, name: "Episodes", active: false },
-  { id: 3, name: "Locations", active: false },
+type MenuItem = {
+  id: number;
+  name: string;
+  to: string;
+};
+
+const MENU_ITEMS: MenuItem[] = [
+  { id: 1, name: "Characters", to: "/" },
+  { id: 2, name: "Episodes", to: "/episodes" },
+  { id: 3, name: "Locations", to: "/locations" },
 ];
 
 export function Navbar() {
   const [overlay, setOverlay] = useState(false);
+  const location = useLocation();
+
   return (
     <div className={styles.navbar}>
       <nav>
@@ -36,17 +46,18 @@ export function Navbar() {
         })}
       >
         <ul className={styles.menu}>
-          {MOCK_MENU_ITEMS.map((item) => (
+          {MENU_ITEMS.map((item: MenuItem) => (
             <li key={item.id}>
-              <a
+              <Link
+                onClick={() => setOverlay(false)}
                 aria-current="page"
                 className={classNames(styles.menuItem, {
-                  [styles.menuItemActive]: item.active,
+                  [styles.menuItemActive]: location.pathname === item.to,
                 })}
-                href="/"
+                to={item.to}
               >
                 <span className={styles.menuItemText}>{item.name}</span>
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
