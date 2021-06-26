@@ -24,21 +24,40 @@ export function Navbar() {
   return (
     <div className={styles.navbar}>
       <nav>
-        <h2 className={styles.logo}>mortyQL 🧪</h2>
+        <Link className={styles.logo} aria-current="page" to={"/"}>
+          <h2>mortyQL 🧪</h2>
+        </Link>
+        <ul className={styles.navbarMenu}>
+          {MENU_ITEMS.map((item: MenuItem) => (
+            <li key={item.id}>
+              <Link
+                aria-current="page"
+                className={classNames(styles.navbarMenuItem, {
+                  [styles.navbarMenuItemActive]: location.pathname === item.to,
+                })}
+                to={item.to}
+              >
+                {item.name}
+              </Link>
+            </li>
+          ))}
+        </ul>
       </nav>
-      {overlay ? (
-        <button
-          className={styles.menuCloseButton}
-          onClick={() => setOverlay(false)}
-        >
-          <span />
-        </button>
-      ) : (
-        <Hamburger
-          onClick={() => setOverlay(true)}
-          className={styles.hamburger}
-        />
-      )}
+      <div className={styles.menuIcon}>
+        {overlay ? (
+          <button
+            className={styles.menuCloseButton}
+            onClick={() => setOverlay(false)}
+          >
+            <span />
+          </button>
+        ) : (
+          <Hamburger
+            onClick={() => setOverlay(true)}
+            className={styles.hamburger}
+          />
+        )}
+      </div>
 
       <div
         className={classNames(styles.overlay, {

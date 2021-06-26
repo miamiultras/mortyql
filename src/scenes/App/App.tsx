@@ -14,7 +14,7 @@ export function App({ children }: { children: React.ReactNode }) {
     <ApolloProvider client={client}>
       <div className={styles.container}>
         <Navbar />
-        {children}
+        <main>{children}</main>
       </div>
     </ApolloProvider>
   );
