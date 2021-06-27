@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 
-import { Card } from "../../components/card";
+import { Card, Spinner } from "../../components";
 import styles from "./characters.module.scss";
 
 type Character = {
@@ -30,7 +30,7 @@ const CHARACTERS = gql`
 export function Characters() {
   const { loading, error, data } = useQuery(CHARACTERS);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Spinner />;
   if (error) return <p>Error :(</p>;
 
   const { characters } = data;

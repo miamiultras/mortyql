@@ -3,14 +3,13 @@ $default-green: #34d399;
 
 .container {
   display: flex;
-  justify-content: center;
   align-items: center;
   flex-direction: column;
 }
 
 .title {
   color: $default-gray;
-  font-weight: 800;
+  font-weight: 700;
 }
 
 .card {

@@ -12,10 +12,8 @@ const client = new ApolloClient({
 export function App({ children }: { children: React.ReactNode }) {
   return (
     <ApolloProvider client={client}>
-      <div className={styles.container}>
-        <Navbar />
-        <main>{children}</main>
-      </div>
+      <Navbar />
+      <div className={styles.container}>{children}</div>
     </ApolloProvider>
   );
 }
