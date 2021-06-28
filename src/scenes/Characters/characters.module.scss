@@ -5,6 +5,7 @@ $default-green: #34d399;
   display: flex;
   align-items: center;
   flex-direction: column;
+  padding: 2rem;
 }
 
 .title {
@@ -17,11 +18,11 @@ $default-green: #34d399;
   display: flex;
   align-items: center;
   justify-content: space-between;
+  width: 260px;
 }
 
 .details {
   color: $default-gray;
-  height: 180px;
   padding-right: 1rem;
   display: flex;
   flex-direction: column;
@@ -30,11 +31,13 @@ $default-green: #34d399;
   .name {
     color: $default-gray;
     font-weight: 600;
-    font-size: 20px;
+    font-size: 16px;
+    margin-bottom: 0.25rem;
   }
 
   p {
     margin: 0;
+    font-size: 14px;
   }
 
   .label {
@@ -55,7 +58,30 @@ $default-green: #34d399;
 }
 
 .image {
-  width: 180px;
-  height: 180px;
+  width: 120px;
+  height: 120px;
   border-radius: 8px;
+}
+
+@media screen and (min-width: 1024px) {
+  .card {
+    width: 400px;
+  }
+
+  .details {
+    .name {
+      font-size: 20px;
+    }
+
+    p {
+      margin: 0;
+      font-size: 16px;
+    }
+  }
+
+  .image {
+    width: 180px;
+    height: 180px;
+    border-radius: 8px;
+  }
 }
