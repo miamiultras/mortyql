@@ -29,6 +29,8 @@ export function Search({ setQuery }: SearchProps) {
   return (
     <div className={styles.searchWrapper}>
       <input
+        aria-label="search"
+        name="search"
         placeholder="Search..."
         className={styles.search}
         value={value}

@@ -4,7 +4,7 @@ import { useState } from "react";
 import { Card, Search, Spinner } from "../../components";
 import styles from "./characters.module.scss";
 
-type Character = {
+export type Character = {
   name: string;
   status: string;
   species: string;
@@ -13,23 +13,27 @@ type Character = {
   image: string;
 };
 
-export function Characters() {
-  const [searchQuery, setSearchQuery] = useState<string>("");
-  const query = gql`
-    query {
-      characters(filter: { name: "${searchQuery}" }) {
-        results {
-          name
-          status
-          species
-          type
-          gender
-          image
-        }
+export const GET_CHARACTERS_QUERY = gql`
+  query Characters($searchQuery: String!){
+    characters(filter: { name: $searchQuery }) {
+      results {
+        name
+        status
+        species
+        type
+        gender
+        image
       }
     }
-  `;
-  const { loading, error, data } = useQuery(query);
+  }
+`;
+
+export function Characters() {
+  const [searchQuery, setSearchQuery] = useState<string>("");
+
+  const { loading, error, data } = useQuery(GET_CHARACTERS_QUERY, {
+    variables: { searchQuery },
+  });
 
   return (
     <div className={styles.container}>
