@@ -27,7 +27,7 @@ export function Navbar() {
         <Link className={styles.logo} aria-current="page" to={"/"}>
           <h2>mortyQL 🧪</h2>
         </Link>
-        <ul className={styles.navbarMenu}>
+        <ul className={styles.navbarMenu} data-testid="menu">
           {MENU_ITEMS.map((item: MenuItem) => (
             <li key={item.id}>
               <Link
@@ -46,6 +46,7 @@ export function Navbar() {
       <div className={styles.menuIcon}>
         {overlay ? (
           <button
+            data-testid="close-menu-icon"
             className={styles.menuCloseButton}
             onClick={() => setOverlay(false)}
           >
@@ -53,6 +54,7 @@ export function Navbar() {
           </button>
         ) : (
           <Hamburger
+            data-testid="hamburger"
             onClick={() => setOverlay(true)}
             className={styles.hamburger}
           />
@@ -60,6 +62,7 @@ export function Navbar() {
       </div>
 
       <div
+        data-testid="overlay-menu"
         className={classNames(styles.overlay, {
           [styles.overlayVisible]: overlay,
         })}

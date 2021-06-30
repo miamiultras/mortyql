@@ -6,7 +6,7 @@ import {
 import { MockedProvider } from "@apollo/client/testing";
 import { MemoryRouter } from "react-router-dom";
 
-import { Characters, GET_CHARACTERS_QUERY, Character } from "./characters";
+import { Characters, GET_CHARACTERS_QUERY, Character } from "./characters.component";
 
 const characterMock: Character = {
   name: "Rick",
