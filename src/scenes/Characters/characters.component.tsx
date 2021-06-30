@@ -14,7 +14,7 @@ export type Character = {
 };
 
 export const GET_CHARACTERS_QUERY = gql`
-  query Characters($searchQuery: String!){
+  query Characters($searchQuery: String!) {
     characters(filter: { name: $searchQuery }) {
       results {
         name
@@ -39,7 +39,6 @@ export function Characters() {
     <div className={styles.container}>
       <h1 className={styles.title}>Characters</h1>
       <Search setQuery={setSearchQuery} />
-      {}
       {loading ? (
         <Spinner />
       ) : !error ? (

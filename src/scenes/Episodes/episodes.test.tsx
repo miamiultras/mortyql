@@ -6,67 +6,59 @@ import {
 import { MockedProvider } from "@apollo/client/testing";
 import { MemoryRouter } from "react-router-dom";
 
-import {
-  Characters,
-  GET_CHARACTERS_QUERY,
-  Character,
-} from "./characters.component";
+import { Episodes, GET_EPISODES_QUERY, Episode } from "./episodes.component";
 
-const characterMock: Character = {
-  name: "Rick",
-  status: "Alive",
-  species: "Human",
-  type: "N/A",
-  gender: "Male",
-  image: "imgSrc",
+const episodeMock: Episode = {
+  id: 1,
+  name: "Pilot",
+  episode: "S01E01",
+  air_date: "December 2, 2013",
 };
 
 const mocks = [
   {
     request: {
-      query: GET_CHARACTERS_QUERY,
-      variables: {
-        searchQuery: "",
-      },
+      query: GET_EPISODES_QUERY,
     },
     result: {
       data: {
-        characters: {
-          results: [characterMock],
+        episodesById: {
+          results: [episodeMock],
         },
       },
     },
   },
 ];
 
-describe("Characters", () => {
+describe("Episodes", () => {
   test("render without error", () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <MemoryRouter>
-          <Characters />
+          <Episodes />
         </MemoryRouter>
       </MockedProvider>
     );
-    expect(screen.getByText("Characters")).toBeInTheDocument();
-    expect(screen.getByRole("textbox", { name: "search" })).toBeInTheDocument();
+    expect(
+      screen.getByRole("heading", { name: "List of episodes" })
+    ).toBeInTheDocument();
   });
 
-  test("render character list", async () => {
+  test("render episodes list", async () => {
     render(
       <MockedProvider mocks={mocks} addTypename={false}>
         <MemoryRouter>
-          <Characters />
+          <Episodes />
         </MemoryRouter>
       </MockedProvider>
     );
     await waitForElementToBeRemoved(screen.getByTestId("spinner"));
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    for (const key in characterMock) {
-      if (key === "image") return;
+    for (const key in episodeMock) {
+      if (key === "id") return;
       expect(
-        screen.getByText(characterMock[key as keyof Character])
+        screen.getByText(episodeMock[key as keyof Episode])
       ).toBeInTheDocument();
     }
   });
@@ -74,15 +66,14 @@ describe("Characters", () => {
   test("render error", async () => {
     const errorMock = {
       request: {
-        query: GET_CHARACTERS_QUERY,
-        variables: { name: "Rick" },
+        query: GET_EPISODES_QUERY,
       },
       error: new Error("An error occurred"),
     };
     render(
       <MockedProvider mocks={[errorMock]} addTypename={false}>
         <MemoryRouter>
-          <Characters />
+          <Episodes />
         </MemoryRouter>
       </MockedProvider>
     );
