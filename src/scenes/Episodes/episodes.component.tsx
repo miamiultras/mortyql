@@ -12,7 +12,7 @@ export type Episode = {
 
 export const GET_EPISODES_QUERY = gql`
   query {
-    episodesByIds(ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]) {
+    episodesByIds(ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
       id
       name
       air_date
@@ -52,7 +52,6 @@ export function Episodes() {
                   </tr>
                 )
               )}
-              <tr></tr>
             </tbody>
           </table>
         </div>
