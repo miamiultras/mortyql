@@ -1,7 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 import { useState } from "react";
 
-import { Card, Search, Spinner } from "../../components";
+import { Card, Search, Spinner, ErrorContainer } from "../../components";
 import styles from "./characters.module.scss";
 
 export type Character = {
@@ -74,10 +74,10 @@ export function Characters() {
           )}
         </div>
       ) : (
-        <div className={styles.error}>
+        <ErrorContainer className={styles.errorContainer}>
           <h2>Something went wrong.</h2>
-          <p>Try changing the query.</p>
-        </div>
+          <h4>Try changing the query.</h4>
+        </ErrorContainer>
       )}
     </div>
   );

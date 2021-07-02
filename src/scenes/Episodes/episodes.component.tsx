@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 
-import { Spinner } from "../../components";
+import { ErrorContainer, Spinner } from "../../components";
 import styles from "./episodes.module.scss";
 
 export type Episode = {
@@ -56,10 +56,10 @@ export function Episodes() {
           </table>
         </div>
       ) : (
-        <div className={styles.error}>
+        <ErrorContainer className={styles.errorContainer}>
           <h2>Something went wrong.</h2>
           <p>Try changing the query.</p>
-        </div>
+        </ErrorContainer>
       )}
     </div>
   );

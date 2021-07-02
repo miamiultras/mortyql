@@ -1,6 +1,5 @@
 $default-gray: #4b5563;
 $default-green: #34d399;
-$error: #ef4444;
 
 .container {
   display: flex;
@@ -91,12 +90,8 @@ $error: #ef4444;
   }
 }
 
-.error {
-  color: $error;
-  margin-top: 2rem;
-
-  p {
-    text-align: center;
-    font-weight: 700;
+.errorContainer {
+  h2 {
+    margin-bottom: 0;
   }
 }

@@ -1,6 +1,6 @@
 import { gql, useQuery } from "@apollo/client";
 
-import { Spinner } from "../../components";
+import { ErrorContainer, Spinner } from "../../components";
 import styles from "./locations.module.scss";
 
 export type Location = {
@@ -57,10 +57,10 @@ export function Locations() {
           </table>
         </div>
       ) : (
-        <div className={styles.error}>
+        <ErrorContainer className={styles.errorContainer}>
           <h2>Something went wrong.</h2>
           <p>Try changing the query.</p>
-        </div>
+        </ErrorContainer>
       )}
     </div>
   );
