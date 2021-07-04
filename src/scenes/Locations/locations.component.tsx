@@ -3,12 +3,12 @@ import { gql, useQuery } from "@apollo/client";
 import { ErrorContainer, Spinner } from "../../components";
 import styles from "./locations.module.scss";
 
-export type Location = {
+export interface ILocation {
   id: number;
   name: string;
   type: string;
   dimension: string;
-};
+}
 
 export const GET_LOCATIONS_QUERY = gql`
   query {
@@ -44,7 +44,7 @@ export function Locations() {
             </thead>
             <tbody>
               {data?.locations?.results.map(
-                ({ id, name, type, dimension }: Location, index: number) => (
+                ({ id, name, type, dimension }: ILocation, index: number) => (
                   <tr key={id}>
                     <td>{++index}</td>
                     <td>{name}</td>

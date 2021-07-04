@@ -9,7 +9,11 @@ const client = new ApolloClient({
   cache: new InMemoryCache(),
 });
 
-export function App({ children }: { children: React.ReactNode }) {
+interface IApp {
+  children: React.ReactNode;
+}
+
+export function App({ children }: IApp) {
   return (
     <ApolloProvider client={client}>
       <Navbar />

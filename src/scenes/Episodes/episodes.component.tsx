@@ -3,12 +3,12 @@ import { gql, useQuery } from "@apollo/client";
 import { ErrorContainer, Spinner } from "../../components";
 import styles from "./episodes.module.scss";
 
-export type Episode = {
+export interface IEpisode {
   id: number;
   name: string;
   air_date: string;
   episode: string;
-};
+}
 
 export const GET_EPISODES_QUERY = gql`
   query {
@@ -43,7 +43,7 @@ export function Episodes() {
             </thead>
             <tbody>
               {data?.episodesByIds.map(
-                ({ id, name, air_date, episode }: Episode, index: number) => (
+                ({ id, name, air_date, episode }: IEpisode, index: number) => (
                   <tr key={id}>
                     <td>{++index}</td>
                     <td>{episode}</td>

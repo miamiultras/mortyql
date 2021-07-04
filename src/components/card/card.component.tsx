@@ -3,11 +3,11 @@ import classNames from "classnames";
 
 import styles from "./card.module.scss";
 
-type CardProps = {
+interface ICard {
   children: ReactNode;
   className?: string;
-};
+}
 
-export function Card({ children, className }: CardProps) {
+export function Card({ children, className }: ICard) {
   return <div className={classNames(styles.card, className)}>{children}</div>;
 }

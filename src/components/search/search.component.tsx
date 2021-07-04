@@ -1,9 +1,9 @@
 import React, { SetStateAction, useState } from "react";
 import styles from "./search.module.scss";
 
-type SearchProps = {
+interface ISearch {
   setQuery: React.Dispatch<React.SetStateAction<string>>;
-};
+}
 
 function debounce<T>(callback: (arg: T) => void, wait: number) {
   let timeout: NodeJS.Timeout;
@@ -13,7 +13,7 @@ function debounce<T>(callback: (arg: T) => void, wait: number) {
   };
 }
 
-export function Search({ setQuery }: SearchProps) {
+export function Search({ setQuery }: ISearch) {
   const [value, setValue] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

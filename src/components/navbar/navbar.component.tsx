@@ -5,13 +5,13 @@ import { Link, useLocation } from "react-router-dom";
 import { ReactComponent as Hamburger } from "./hamburger.svg";
 import styles from "./navbar.module.scss";
 
-type MenuItem = {
+interface IMenuItem {
   id: number;
   name: string;
   to: string;
-};
+}
 
-const MENU_ITEMS: MenuItem[] = [
+const MENU_ITEMS: IMenuItem[] = [
   { id: 1, name: "Characters", to: "/" },
   { id: 2, name: "Episodes", to: "/episodes" },
   { id: 3, name: "Locations", to: "/locations" },
@@ -28,7 +28,7 @@ export function Navbar() {
           <h2>mortyQL 🧪</h2>
         </Link>
         <ul className={styles.navbarMenu} data-testid="menu">
-          {MENU_ITEMS.map((item: MenuItem) => (
+          {MENU_ITEMS.map((item: IMenuItem) => (
             <li key={item.id}>
               <Link
                 aria-current="page"
@@ -68,7 +68,7 @@ export function Navbar() {
         })}
       >
         <ul className={styles.menu}>
-          {MENU_ITEMS.map((item: MenuItem) => (
+          {MENU_ITEMS.map((item: IMenuItem) => (
             <li key={item.id}>
               <Link
                 onClick={() => setOverlay(false)}
