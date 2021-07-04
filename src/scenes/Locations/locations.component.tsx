@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 
-import { ErrorContainer, Spinner } from "../../components";
+import { ErrorContainer, Spinner, Table } from "../../components";
+import { ITableColumn } from "../../interfaces";
 import styles from "./locations.module.scss";
 
 export interface ILocation {
@@ -23,8 +24,28 @@ export const GET_LOCATIONS_QUERY = gql`
   }
 `;
 
+const columns: ITableColumn<ILocation>[] = [
+  {
+    title: "No.",
+    render: ({ id }) => <span>{id}</span>,
+  },
+  {
+    title: "Name",
+    render: ({ name }) => <span>{name}</span>,
+  },
+  {
+    title: "Type",
+    render: ({ type }) => <span>{type}</span>,
+  },
+  {
+    title: "Dimension",
+    render: ({ dimension }) => <span>{dimension}</span>,
+  },
+];
+
 export function Locations() {
   const { loading, error, data } = useQuery(GET_LOCATIONS_QUERY);
+  const locations: ILocation[] = data?.locations?.results || [];
 
   return (
     <div className={styles.container}>
@@ -33,28 +54,7 @@ export function Locations() {
         <Spinner />
       ) : !error ? (
         <div className={styles.tableContainer}>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Dimension</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data?.locations?.results.map(
-                ({ id, name, type, dimension }: ILocation, index: number) => (
-                  <tr key={id}>
-                    <td>{++index}</td>
-                    <td>{name}</td>
-                    <td>{type}</td>
-                    <td>{dimension}</td>
-                  </tr>
-                )
-              )}
-            </tbody>
-          </table>
+          <Table columns={columns} data={locations} />
         </div>
       ) : (
         <ErrorContainer className={styles.errorContainer}>

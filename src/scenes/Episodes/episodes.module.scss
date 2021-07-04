@@ -26,29 +26,6 @@ $default-green: #34d399;
   }
 }
 
-.table {
-  width: 100%;
-  border-collapse: collapse;
-
-  thead,
-  tbody {
-    padding: 1rem;
-  }
-  th {
-    box-sizing: border-box;
-    padding: 0.5rem 0;
-    background-color: $default-gray;
-    color: white;
-    border: 1px solid $default-gray;
-  }
-
-  td {
-    box-sizing: border-box;
-    border: 1px solid $default-gray;
-    padding: 0.5rem;
-  }
-}
-
 .errorContainer {
   h2 {
     margin-bottom: 0;

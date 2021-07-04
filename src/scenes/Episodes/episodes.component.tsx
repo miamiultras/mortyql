@@ -1,6 +1,7 @@
 import { gql, useQuery } from "@apollo/client";
 
-import { ErrorContainer, Spinner } from "../../components";
+import { ErrorContainer, Spinner, Table } from "../../components";
+import { ITableColumn } from "../../interfaces";
 import styles from "./episodes.module.scss";
 
 export interface IEpisode {
@@ -12,7 +13,7 @@ export interface IEpisode {
 
 export const GET_EPISODES_QUERY = gql`
   query {
-    episodesByIds(ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
+    episodes: episodesByIds(ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
       id
       name
       air_date
@@ -21,8 +22,28 @@ export const GET_EPISODES_QUERY = gql`
   }
 `;
 
+const columns: ITableColumn<IEpisode>[] = [
+  {
+    title: "No.",
+    render: ({ id }) => <span>{id}</span>,
+  },
+  {
+    title: "Code",
+    render: ({ episode }) => <span>{episode}</span>,
+  },
+  {
+    title: "Title",
+    render: ({ name }) => <span>{name}</span>,
+  },
+  {
+    title: "Airdate",
+    render: ({ air_date }) => <span>{air_date}</span>,
+  },
+];
+
 export function Episodes() {
   const { loading, error, data } = useQuery(GET_EPISODES_QUERY);
+  const episodes: IEpisode[] = data?.episodes || [];
 
   return (
     <div className={styles.container}>
@@ -32,28 +53,7 @@ export function Episodes() {
       ) : !error ? (
         <div className={styles.tableContainer}>
           <h3>Season 1</h3>
-          <table className={styles.table}>
-            <thead>
-              <tr>
-                <th>No.</th>
-                <th>Code</th>
-                <th>Title</th>
-                <th>AirDate</th>
-              </tr>
-            </thead>
-            <tbody>
-              {data?.episodesByIds.map(
-                ({ id, name, air_date, episode }: IEpisode, index: number) => (
-                  <tr key={id}>
-                    <td>{++index}</td>
-                    <td>{episode}</td>
-                    <td>{name}</td>
-                    <td>{air_date}</td>
-                  </tr>
-                )
-              )}
-            </tbody>
-          </table>
+          <Table columns={columns} data={episodes} />
         </div>
       ) : (
         <ErrorContainer className={styles.errorContainer}>
