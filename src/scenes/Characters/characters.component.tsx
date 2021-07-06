@@ -47,12 +47,12 @@ export function Characters() {
     async function fetchData() {
       if (data?.characters?.results) {
         const newCharacters = await data.characters.results;
-        setCharacters([...characters, ...newCharacters]);
+        setCharacters((characters) => [...characters, ...newCharacters]);
         lastCardElementRef.current && setNode(lastCardElementRef.current);
       }
     }
     fetchData();
-  }, [loading, error, data]);
+  }, [loading, error, data, setNode]);
 
   return (
     <div className={styles.container}>
