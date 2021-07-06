@@ -9,10 +9,10 @@ import { MemoryRouter } from "react-router-dom";
 import {
   Characters,
   GET_CHARACTERS_QUERY,
-  Character,
+  ICharacter,
 } from "./characters.component";
 
-const characterMock: Character = {
+const characterMock: ICharacter = {
   name: "Rick",
   status: "Alive",
   species: "Human",
@@ -21,18 +21,28 @@ const characterMock: Character = {
   image: "imgSrc",
 };
 
+const mock = function () {
+  return {
+    observe: jest.fn(),
+    disconnect: jest.fn(),
+  };
+};
+window.IntersectionObserver = mock as any;
+
 const mocks = [
   {
     request: {
       query: GET_CHARACTERS_QUERY,
       variables: {
-        searchQuery: "",
+        page: 1,
+        query: "",
       },
     },
     result: {
       data: {
         characters: {
           results: [characterMock],
+          info: { count: 1 },
         },
       },
     },
@@ -66,7 +76,7 @@ describe("Characters", () => {
     for (const key in characterMock) {
       if (key === "image") return;
       expect(
-        screen.getByText(characterMock[key as keyof Character])
+        screen.getByText(characterMock[key as keyof ICharacter])
       ).toBeInTheDocument();
     }
   });
