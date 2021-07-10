@@ -6,13 +6,34 @@ import {
 import { MockedProvider } from "@apollo/client/testing";
 import { MemoryRouter } from "react-router-dom";
 
-import { Episodes, GET_EPISODES_QUERY, Episode } from "./episodes.component";
+import { Episodes, GET_EPISODES_QUERY, IEpisode } from "./episodes.component";
 
-const episodeMock: Episode = {
+const episodeMockSeason1: IEpisode = {
   id: 1,
   name: "Pilot",
   episode: "S01E01",
   air_date: "December 2, 2013",
+};
+
+const episodeMockSeason2: IEpisode = {
+  id: 2,
+  name: "Pilot2",
+  episode: "S02E01",
+  air_date: "December 2, 2014",
+};
+
+const episodeMockSeason3: IEpisode = {
+  id: 3,
+  name: "Pilot3",
+  episode: "S03E01",
+  air_date: "December 2, 2015",
+};
+
+const episodeMockSeason4: IEpisode = {
+  id: 4,
+  name: "Pilot4",
+  episode: "S04E01",
+  air_date: "December 2, 2016",
 };
 
 const mocks = [
@@ -22,9 +43,10 @@ const mocks = [
     },
     result: {
       data: {
-        episodesById: {
-          results: [episodeMock],
-        },
+        season1: [episodeMockSeason1],
+        season2: [episodeMockSeason2],
+        season3: [episodeMockSeason3],
+        season4: [episodeMockSeason4],
       },
     },
   },
@@ -55,12 +77,9 @@ describe("Episodes", () => {
     await waitForElementToBeRemoved(screen.getByTestId("spinner"));
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    for (const key in episodeMock) {
-      if (key === "id") return;
-      expect(
-        screen.getByText(episodeMock[key as keyof Episode])
-      ).toBeInTheDocument();
-    }
+    expect(screen.getByText(episodeMockSeason1.name)).toBeInTheDocument();
+    expect(screen.getByText(episodeMockSeason1.episode)).toBeInTheDocument();
+    expect(screen.getByText(episodeMockSeason1.air_date)).toBeInTheDocument();
   });
 
   test("render error", async () => {

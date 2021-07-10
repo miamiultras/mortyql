@@ -11,9 +11,28 @@ export interface IEpisode {
   episode: string;
 }
 
+// API doesn't allow to query by season...
 export const GET_EPISODES_QUERY = gql`
   query {
-    episodes: episodesByIds(ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
+    season1: episodesByIds(ids: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]) {
+      id
+      name
+      air_date
+      episode
+    }
+    season2: episodesByIds(ids: [12, 13, 14, 15, 16, 17, 18, 19, 20, 21]) {
+      id
+      name
+      air_date
+      episode
+    }
+    season3: episodesByIds(ids: [22, 23, 24, 25, 26, 27, 28, 29, 30, 31]) {
+      id
+      name
+      air_date
+      episode
+    }
+    season4: episodesByIds(ids: [32, 33, 34, 35, 36, 37, 38, 39, 40, 41]) {
       id
       name
       air_date
@@ -43,7 +62,6 @@ const columns: ITableColumn<IEpisode>[] = [
 
 export function Episodes() {
   const { loading, error, data } = useQuery(GET_EPISODES_QUERY);
-  const episodes: IEpisode[] = data?.episodes || [];
 
   return (
     <div className={styles.container}>
@@ -51,10 +69,24 @@ export function Episodes() {
       {loading ? (
         <Spinner />
       ) : !error ? (
-        <div className={styles.tableContainer}>
-          <h3>Season 1</h3>
-          <Table columns={columns} data={episodes} />
-        </div>
+        <>
+          <div className={styles.tableContainer}>
+            <h3>Season 1</h3>
+            <Table columns={columns} data={data?.season1} />
+          </div>
+          <div className={styles.tableContainer}>
+            <h3>Season 2</h3>
+            <Table columns={columns} data={data?.season2} />
+          </div>
+          <div className={styles.tableContainer}>
+            <h3>Season 3</h3>
+            <Table columns={columns} data={data?.season3} />
+          </div>
+          <div className={styles.tableContainer}>
+            <h3>Season 4</h3>
+            <Table columns={columns} data={data?.season4} />
+          </div>
+        </>
       ) : (
         <ErrorContainer className={styles.errorContainer}>
           <h2>Something went wrong.</h2>
