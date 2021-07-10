@@ -54,6 +54,11 @@ export function Characters() {
     fetchData();
   }, [loading, error, data, setNode]);
 
+
+  useEffect(() => {
+    setCharacters([])
+  }, [query])
+
   return (
     <div className={styles.container}>
       <h1 className={styles.title}>Characters</h1>

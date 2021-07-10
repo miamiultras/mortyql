@@ -12,14 +12,24 @@ import {
   ICharacter,
 } from "./characters.component";
 
-const characterMock: ICharacter = {
-  name: "Rick",
-  status: "Alive",
-  species: "Human",
-  type: "N/A",
-  gender: "Male",
-  image: "imgSrc",
-};
+const charactersMock: ICharacter[] = [
+  {
+    name: "Rick",
+    status: "Alive",
+    species: "Human",
+    type: "N/A",
+    gender: "Male",
+    image: "imgSrc",
+  },
+  {
+    name: "Summer",
+    status: "Alive",
+    species: "Human",
+    type: "N/A",
+    gender: "Female",
+    image: "imgSrc",
+  },
+];
 
 const mock = function () {
   return {
@@ -41,7 +51,7 @@ const mocks = [
     result: {
       data: {
         characters: {
-          results: [characterMock],
+          results: charactersMock,
           info: { count: 1 },
         },
       },
@@ -73,12 +83,8 @@ describe("Characters", () => {
     await waitForElementToBeRemoved(screen.getByTestId("spinner"));
     await new Promise((resolve) => setTimeout(resolve, 0));
 
-    for (const key in characterMock) {
-      if (key === "image") return;
-      expect(
-        screen.getByText(characterMock[key as keyof ICharacter])
-      ).toBeInTheDocument();
-    }
+    expect(screen.getByText(charactersMock[0].name)).toBeInTheDocument();
+    expect(screen.getByText(charactersMock[1].name)).toBeInTheDocument();
   });
 
   test("render error", async () => {
