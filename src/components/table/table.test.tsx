@@ -32,4 +32,13 @@ describe("Table", () => {
       screen.getByRole("cell", { name: "Test data2" })
     ).toBeInTheDocument();
   });
+
+  test("renders 'empty state' if no data", () => {
+    render(
+      <MemoryRouter>
+        <Table columns={mockColumns} data={[]} />
+      </MemoryRouter>
+    );
+    expect(screen.getByText("No data")).toBeInTheDocument();
+  });
 });
