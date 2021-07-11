@@ -1,5 +1,4 @@
-$default-green: #34d399;
-$default-gray: #4b5563;
+@import "../../styles/variables";
 
 .searchWrapper {
   display: flex;
@@ -10,8 +9,8 @@ $default-gray: #4b5563;
   width: 100%;
   border-radius: 8px;
   border: none;
-  box-shadow: 0 10px 15px 2px #0000001a, 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  box-shadow: $default-box-shadow;
   padding: 0.5rem 1rem;
-  color: $default-gray;
+  color: $default-text-color;
   font-size: 18px;
 }

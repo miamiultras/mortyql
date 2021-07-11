@@ -1,5 +1,4 @@
-$default-gray: #4b5563;
-$default-green: #34d399;
+@import "../../styles/variables";
 
 .container {
   display: flex;
@@ -13,7 +12,7 @@ $default-green: #34d399;
 }
 
 .title {
-  color: $default-gray;
+  color: $default-text-color;
   font-weight: 700;
 }
 
@@ -26,14 +25,14 @@ $default-green: #34d399;
 }
 
 .details {
-  color: $default-gray;
+  color: $default-text-color;
   padding-right: 1rem;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
 
   .name {
-    color: $default-gray;
+    color: $default-text-color;
     font-weight: 600;
     font-size: 16px;
     margin-bottom: 0.25rem;
@@ -45,15 +44,15 @@ $default-green: #34d399;
   }
 
   .label {
-    color: $default-gray;
+    color: $default-text-color;
     font-weight: 600;
   }
 
   .button {
     width: 140px;
     border: none;
-    background-color: $default-green;
-    color: white;
+    background-color: $primary-color;
+    color: $light-text-color;
     padding: 0.5rem 1rem;
     font-size: 18px;
     font-weight: 600;

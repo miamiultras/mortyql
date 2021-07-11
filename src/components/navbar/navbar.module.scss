@@ -1,5 +1,5 @@
-$default-gray: #4b5563;
-$default-green: #34d399;
+@import "../../styles/variables";
+
 $navbar-height: 60px;
 
 .navbar {
@@ -7,8 +7,8 @@ $navbar-height: 60px;
   align-items: center;
   justify-content: space-between;
   height: $navbar-height;
-  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  background-color: white;
+  box-shadow: $default-box-shadow;
+  background-color: $default-background-color;
   position: fixed;
   top: 0;
   width: 100%;
@@ -23,7 +23,7 @@ $navbar-height: 60px;
 }
 
 .logo {
-  color: $default-gray;
+  color: $default-text-color;
   font-weight: 800;
   text-decoration: none;
 }
@@ -34,7 +34,7 @@ $navbar-height: 60px;
 }
 
 .navbarMenuItem {
-  color: $default-gray;
+  color: $default-text-color;
   display: inline-block;
   font-weight: 700;
   transition: border 0.2s ease 0s;
@@ -44,11 +44,11 @@ $navbar-height: 60px;
 }
 
 .navbarMenuItemActive {
-  border-bottom: 4px solid $default-green;
+  border-bottom: 4px solid $primary-color;
 }
 
 .hamburger {
-  stroke: $default-gray;
+  stroke: $default-text-color;
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -57,7 +57,7 @@ $navbar-height: 60px;
 }
 
 .overlay {
-  background-color: white;
+  background-color: $default-background-color;
   position: fixed;
   inset: 0px;
   top: $navbar-height;
@@ -74,7 +74,7 @@ $navbar-height: 60px;
 }
 
 .overlayLogo {
-  color: $default-gray;
+  color: $default-text-color;
   font-weight: 800;
   text-align: left;
 }
@@ -87,7 +87,7 @@ $navbar-height: 60px;
 }
 
 .menuItem {
-  color: $default-gray;
+  color: $default-text-color;
   display: inline-block;
   border-bottom: 1px solid transparent;
   margin-top: 5px;
@@ -105,7 +105,7 @@ $navbar-height: 60px;
 }
 
 .menuItemActive {
-  border-left-color: $default-green;
+  border-left-color: $primary-color;
 }
 
 .menuIcon {
@@ -113,7 +113,7 @@ $navbar-height: 60px;
 }
 
 .menuCloseButton {
-  background-color: white;
+  background-color: $default-background-color;
   border: none;
   width: 30px;
   height: 30px;
@@ -133,7 +133,7 @@ $navbar-height: 60px;
     content: "";
     width: 100%;
     height: 3px;
-    background-color: $default-gray;
+    background-color: $default-text-color;
   }
 
   span::before {

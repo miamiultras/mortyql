@@ -1,5 +1,4 @@
-$default-gray: #4b5563;
-$default-green: #34d399;
+@import "../../styles/variables";
 
 .container {
   display: flex;
@@ -9,13 +8,13 @@ $default-green: #34d399;
 }
 
 .title {
-  color: $default-gray;
+  color: $default-text-color;
   font-weight: 700;
 }
 
 .tableContainer {
-  background-color: white;
-  box-shadow: 0 10px 15px -3px #0000001a, 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  background-color: $default-background-color;
+  box-shadow: $default-box-shadow;
   border-radius: 8px;
   padding: 1rem;
   margin-bottom: 1rem;
@@ -23,7 +22,7 @@ $default-green: #34d399;
   width: 100%;
 
   h3 {
-    color: $default-gray;
+    color: $default-text-color;
     font-weight: 700;
     margin-top: 0;
   }

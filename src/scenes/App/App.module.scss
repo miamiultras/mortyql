@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import "../../styles/variables";
 
 body {
   margin: 0;
@@ -15,7 +16,7 @@ code {
 }
 
 .container {
-  background-color: #f7fafc;
+  background-color: $secondary-background-color;
   margin: 60px auto 0;
   min-height: calc(100vh - 60px);
   min-width: 100vw;

@@ -1,4 +1,4 @@
-$default-gray: #4b5563;
+@import "../../styles/variables";
 
 .table {
   width: 100%;
@@ -11,14 +11,14 @@ $default-gray: #4b5563;
   th {
     box-sizing: border-box;
     padding: 0.5rem 0;
-    background-color: $default-gray;
-    color: white;
-    border: 1px solid $default-gray;
+    background-color: $default-text-color;
+    color: $light-text-color;
+    border: 1px solid $default-text-color;
   }
 
   td {
     box-sizing: border-box;
-    border: 1px solid $default-gray;
+    border: 1px solid $default-text-color;
     padding: 0.5rem;
   }
 }
